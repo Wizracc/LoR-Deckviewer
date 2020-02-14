@@ -1,0 +1,8 @@
+.Decklist {
+  display: inline-grid;
+  grid-template-columns: 300px 300px;
+}
+
+img {
+  max-width: 300px;
+}
