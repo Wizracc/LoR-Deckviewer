@@ -20,7 +20,8 @@ class Decklist extends Component {
 
   fetchDeck() {
     const code = this.state.code;
-    fetch(`http://localhost:5000/json/${code}`)
+    const port = process.env.PORT || 3000;
+    fetch(`http://localhost:${port}/json/${code}`)
       .then(res => res.json())
       .then(data =>
         this.setState({
@@ -75,7 +76,7 @@ class Decklist extends Component {
           <div>
             {this.state.hovered !== null && (
               <img
-                src={`http://localhost:5000/image/${this.state.hovered}`}
+                src={`http://localhost:${port}/image/${this.state.hovered}`}
                 alt={this.state.hovered}
                 fluid="true"
               />
