@@ -25,7 +25,7 @@ server.get("/*", cors(), (req, res) => {
   res.sendFile(path.join(__dirname + "/build/index.html"));
 });
 
-const port = 80;
+const port = 5000;
 
 server.listen(port, () => {
   console.log(`server listening on ${port}`);
