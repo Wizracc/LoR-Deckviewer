@@ -7,12 +7,7 @@
   text-decoration: none;
   color: grey;
   background-color: #020024;
-  border-bottom: 1vh;
-  border-style: solid;
-  border-color: navy;
-  border-top: none;
-  border-right: none;
-  border-left: none;
+  border-bottom: 1vh solid navy !important;
   margin-bottom: 5vh;
 }
 

@@ -21,11 +21,11 @@ server.get("/image/:code", cors(), (req, res) => {
   );
 });
 
-server.get("/*", (req, res) => {
+server.get("/*", cors(), (req, res) => {
   res.sendFile(path.join(__dirname + "/build/index.html"));
 });
 
-const port = 4000;
+const port = 80;
 
 server.listen(port, () => {
   console.log(`server listening on ${port}`);
