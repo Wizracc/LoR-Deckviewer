@@ -17,4 +17,12 @@ img {
   color: white;
 }
 
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: initial;
+}
+
 /*# sourceMappingURL=Decklist.css.map */
