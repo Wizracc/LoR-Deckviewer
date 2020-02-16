@@ -7,7 +7,7 @@ const path = require("path");
 
 server.use(express.static(path.join(__dirname, "build")));
 
-server.get("/deck/:code", cors(), (req, res) => {
+server.get("/json/:code", cors(), (req, res) => {
   const code = req.params.code;
   const deck = DeckEncoder.decode(code);
 

@@ -20,7 +20,7 @@ class Decklist extends Component {
 
   fetchDeck() {
     const code = this.state.code;
-    fetch(`http://localhost:4000/deck/${code}`)
+    fetch(`http://localhost:4000/json/${code}`)
       .then(res => res.json())
       .then(data =>
         this.setState({
