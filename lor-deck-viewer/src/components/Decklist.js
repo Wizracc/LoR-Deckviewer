@@ -20,8 +20,7 @@ class Decklist extends Component {
 
   fetchDeck() {
     const code = this.state.code;
-    const port = process.env.PORT || 3000;
-    fetch(`http://localhost:${port}/json/${code}`)
+    fetch(`http://decks.wizra.cc/json/${code}`)
       .then(res => res.json())
       .then(data =>
         this.setState({
@@ -76,7 +75,7 @@ class Decklist extends Component {
           <div>
             {this.state.hovered !== null && (
               <img
-                src={`http://localhost:${port}/image/${this.state.hovered}`}
+                src={`http://decks.wizra.cc/image/${this.state.hovered}`}
                 alt={this.state.hovered}
                 fluid="true"
               />
