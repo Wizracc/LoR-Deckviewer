@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import "./../styles/Homepage.css";
 
 export default class Homepage extends Component {
   constructor(props) {
@@ -16,16 +17,17 @@ export default class Homepage extends Component {
 
   render() {
     return (
-      <div>
-        <form>
-          <label htmlFor="code">Deck Code:</label>
+      <div className="Homepage">
+        <form className="form">
+          <label className="label" htmlFor="code">Deck Code:</label>
           <input
+            className="input"
             name="code"
             value={this.state.code}
             onChange={this.handleChange}
           />
           <Link to={`/${this.state.code}`}>
-            <button>Boop!</button>
+            <button className="button">Boop!</button>
           </Link>
         </form>
       </div>

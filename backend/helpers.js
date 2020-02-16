@@ -14,7 +14,8 @@ function getDeck(deck) {
       name: card.name,
       count: c.count,
       cost: card.cost,
-      region: card.region
+      region: card.region,
+      rarity: card.rarity,
     });
   }
   return richDeck;

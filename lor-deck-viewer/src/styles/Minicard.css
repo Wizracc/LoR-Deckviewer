@@ -1,0 +1,76 @@
+.Minicard {
+  font-family: "Roboto", sans-serif;
+  font-size: 120%;
+  margin: 1px;
+  border-radius: 5px;
+  transition: transform 0.2s;
+}
+
+.Minicard:hover {
+  transform: scale(1.05);
+}
+
+.grid {
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+}
+
+p {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-bottom: 0;
+}
+
+.cost {
+  justify-self: center;
+}
+
+.count {
+  justify-self: center;
+}
+
+.freljord {
+  background: linear-gradient(to right, #d7fffe 80%, transparent);
+}
+
+.shadowisles {
+  background: linear-gradient(to right, #aaf0d1 80%, transparent);
+}
+
+.demacia {
+  background: linear-gradient(to right, #fdfdaf 80%, transparent);
+}
+
+.ionia {
+  background: linear-gradient(to right, #ffe4e1 80%, transparent);
+}
+
+.noxus {
+  background: linear-gradient(to right, #ff817b 80%, transparent);
+}
+
+.piltover\&zaun {
+  background: linear-gradient(to right, #ffd599 80%, transparent);
+}
+
+.common {
+  background-color: #04bf66;
+}
+
+.rare {
+  background-color: #2878f2;
+}
+
+.epic {
+  background-color: #981fd9;
+}
+
+.champion {
+  background-color: #ea9c15;
+}
+
+/*# sourceMappingURL=Minicard.css.map */

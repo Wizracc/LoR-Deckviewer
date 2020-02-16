@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Minicard from "./Minicard";
+import Header from "./Header";
 import "./../styles/Decklist.css";
 
 class Decklist extends Component {
@@ -20,7 +22,12 @@ class Decklist extends Component {
     fetch(`http://localhost:4000/deck/${code}`)
       .then(res => res.json())
       .then(data =>
-        this.setState({ ...this.state, code: code, deck: data.deck })
+        this.setState({
+          ...this.state,
+          code: code,
+          deck: data.deck.sort((a, b) => (a.cost > b.cost ? 1 : -1)),
+          hovered: data.deck[0].code
+        })
       );
   }
 
@@ -44,20 +51,30 @@ class Decklist extends Component {
 
   render() {
     return (
-      <div className="Decklist">
-        <ul>
-          {this.state.deck.map(cardInfo => (
-            <li
-              onMouseEnter={() => this.handleHover(cardInfo.code)}
-              onMouseLeave={this.handleLeave}
-            >
-              {cardInfo.count}, {cardInfo.name}
-            </li>
-          ))}
-        </ul>
-        {this.state.hovered !== null && (
-          <img src={`http://localhost:4000/image/${this.state.hovered}`} />
-        )}
+      <div>
+        <Header />
+        <div className="Decklist">
+          <div>
+            {this.state.deck.map(cardInfo => (
+              <Minicard
+                onMouseEnter={() => this.handleHover(cardInfo.code)}
+                count={cardInfo.count}
+                name={cardInfo.name}
+                cost={cardInfo.cost}
+                region={this.normalize(cardInfo.region)}
+                rarity={this.normalize(cardInfo.rarity)}
+              />
+            ))}
+          </div>
+          <div>
+            {this.state.hovered !== null && (
+              <img
+                src={`http://localhost:4000/image/${this.state.hovered}`}
+                fluid
+              />
+            )}
+          </div>
+        </div>
       </div>
     );
   }
