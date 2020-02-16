@@ -9,7 +9,8 @@ class Decklist extends Component {
     this.state = {
       code: this.props.match.params.code,
       deck: [],
-      hovered: null
+      hovered: null,
+      valid: false
     };
     this.fetchDeck = this.fetchDeck.bind(this);
     this.handleHover = this.handleHover.bind(this);
@@ -26,7 +27,8 @@ class Decklist extends Component {
           ...this.state,
           code: code,
           deck: data.deck.sort((a, b) => (a.cost > b.cost ? 1 : -1)),
-          hovered: data.deck[0].code
+          hovered: data.deck[0].code,
+          valid: data.deck.length !== 0
         })
       );
   }
@@ -54,6 +56,9 @@ class Decklist extends Component {
       <div>
         <Header />
         <div className="Decklist">
+          {!this.state.valid && (
+            <p className="error">Invalid deck code</p>
+          )}
           <div>
             {this.state.deck.map(cardInfo => (
               <Minicard
@@ -63,6 +68,7 @@ class Decklist extends Component {
                 cost={cardInfo.cost}
                 region={this.normalize(cardInfo.region)}
                 rarity={this.normalize(cardInfo.rarity)}
+                key={cardInfo.code}
               />
             ))}
           </div>
@@ -70,7 +76,8 @@ class Decklist extends Component {
             {this.state.hovered !== null && (
               <img
                 src={`http://localhost:4000/image/${this.state.hovered}`}
-                fluid
+                alt={this.state.hovered}
+                fluid="true"
               />
             )}
           </div>

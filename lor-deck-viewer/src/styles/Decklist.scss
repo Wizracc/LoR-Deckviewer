@@ -3,11 +3,16 @@
   grid-template-columns: 300px 300px;
   grid-gap: 25px;
   margin: auto;
-  width: 600px;
+  padding: auto;
+  width: 625px;
 }
 
 img {
   width: 100%;
-  background-color: #909090;
+  background-color: #223;
   border-radius: 5px;
+}
+
+.error {
+  color: white;
 }

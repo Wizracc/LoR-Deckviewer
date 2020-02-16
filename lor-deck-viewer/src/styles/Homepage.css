@@ -1,3 +1,11 @@
+.form {
+  width: 50%;
+  margin: auto;
+  margin-top: 25vh;
+}
 
+.input-field {
+  color: white;
+}
 
-/*# sourceMappingURL=homepage.css.map */
+/*# sourceMappingURL=Homepage.css.map */

@@ -2,8 +2,18 @@
   display: flex;
   font-family: "Roboto", sans-serif;
   justify-content: center;
+  justify-self: center;
+  padding: none;
   text-decoration: none;
-  color: black;
+  color: grey;
+  background-color: #020024;
+  border-bottom: 1vh;
+  border-style: solid;
+  border-color: navy;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  margin-bottom: 5vh;
 }
 
 .Header :link{
