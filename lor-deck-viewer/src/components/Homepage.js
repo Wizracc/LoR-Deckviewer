@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./../styles/Homepage.css";
 import M from "materialize-css";
 import Header from "./Header";
+import Footer from "./Footer";
 
 export default class Homepage extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ export default class Homepage extends Component {
   render() {
     return (
       <div>
-        <Header></Header>
+        <Header/>
         <div className="Homepage">
           <form className="form">
             <label className="label" htmlFor="code">
@@ -44,6 +45,7 @@ export default class Homepage extends Component {
             </Link>
           </form>
         </div>
+        <Footer/>
       </div>
     );
   }
