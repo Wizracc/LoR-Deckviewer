@@ -16,21 +16,26 @@
   grid-template-columns: 10% 80% 10%;
 }
 
-p {
+.Minicard p {
   padding-top: 2px;
   padding-bottom: 2px;
   padding-left: 2px;
   margin-block-start: 0;
   margin-block-end: 0;
   margin-bottom: 0;
+  white-space: nowrap;
 }
 
 .cost {
   justify-self: center;
 }
 
+.name {
+  justify-self: left;
+}
+
 .count {
-  justify-self: center;
+  justify-self: left;
 }
 
 .freljord {

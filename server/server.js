@@ -3,8 +3,11 @@ const server = express();
 const { DeckEncoder } = require("runeterra");
 const { getDeck } = require("./helpers");
 const cors = require("cors");
+const path = require("path");
 
-server.get("/deck/:code", cors(), (req, res) => {
+server.use(express.static(path.join(__dirname, "build")));
+
+server.get("/json/:code", cors(), (req, res) => {
   const code = req.params.code;
   const deck = DeckEncoder.decode(code);
 
@@ -18,7 +21,11 @@ server.get("/image/:code", cors(), (req, res) => {
   );
 });
 
-const port = 4000;
+server.get("/*", cors(), (req, res) => {
+  res.sendFile(path.join(__dirname + "/build/index.html"));
+});
+
+const port = process.env.PORT || 3000;
 
 server.listen(port, () => {
   console.log(`server listening on ${port}`);

@@ -1,4 +1,4 @@
-.Header{
+.Header {
   display: flex;
   font-family: "Roboto", sans-serif;
   justify-content: center;
@@ -7,19 +7,19 @@
   text-decoration: none;
   color: grey;
   background-color: #020024;
-  border-bottom: 1vh;
-  border-style: solid;
-  border-color: navy;
-  border-top: none;
-  border-right: none;
-  border-left: none;
+  border-bottom: 1vh solid navy !important;
   margin-bottom: 5vh;
+
+  h1{
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+  }
 }
 
-.Header :link{
+.Header :link {
   text-decoration: none;
 }
 
-.Header :visited{
+.Header :visited {
   text-decoration: none;
 }

@@ -9,10 +9,21 @@
 
 img {
   width: 100%;
-  background-color: #223;
-  border-radius: 5px;
+  pointer-events: none;
+  height: auto;
+  transition: opacity .25s ease-in-out;
+  //background-color: #223;
+  //border-radius: 5px;
 }
 
 .error {
   color: white;
+}
+
+.hidden{
+  opacity: 0;
+}
+
+.visible{
+  opacity: 1;
 }
