@@ -14,13 +14,6 @@ server.get("/json/:code", cors(), (req, res) => {
   res.json({ deck: getDeck(deck) });
 });
 
-server.get("/image/:code", cors(), (req, res) => {
-  const code = req.params.code;
-  res.sendFile(
-    `${__dirname}/datadragon-set1-lite-en_us/en_us/img/cards/${code}.png`
-  );
-});
-
 server.get("/*", cors(), (req, res) => {
   res.sendFile(path.join(__dirname + "/build/index.html"));
 });
