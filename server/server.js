@@ -7,6 +7,10 @@ const path = require("path");
 
 server.use(express.static(path.join(__dirname, "build")));
 
+server.get("/riot.txt", cors(), (req, res) => {
+  res.sendFile(path.join(__dirname + "/riot.txt"));
+});
+
 server.get("/json/:code", cors(), (req, res) => {
   const code = req.params.code;
   const deck = DeckEncoder.decode(code);
