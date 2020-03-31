@@ -8,7 +8,7 @@ import Footer from "./Footer";
 export default class Homepage extends Component {
   constructor(props) {
     super(props);
-    this.state = { code: "" };
+    this.state = { code: "CEBACAIBAYEQCBJEE4UCWMJSGU3DQAQCAEAQIIQDAECRMGZCAA" };
     this.handleChange = this.handleChange.bind(this);
   }
 
