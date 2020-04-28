@@ -72,6 +72,7 @@ export default class Graphs extends Component {
           ionia: "#ffe4e1",
           noxus: "#ff817b",
           "piltover&zaun": "#ffd599",
+          bilgewater: "#e07d62",
           "": "transparent"
         };
 

@@ -1,15 +1,29 @@
 const fs = require("fs");
 
-let raw_data = fs.readFileSync(
-  "./datadragon-set1-lite-en_us/en_us/data/set1-en_us.json"
+let raw_data_set1 = fs.readFileSync(
+  "./set1-lite-en_us/en_us/data/set1-en_us.json"
 );
-const data = JSON.parse(raw_data);
+let raw_data_set2 = fs.readFileSync(
+  "./set2-lite-en_us/en_us/data/set2-en_us.json"
+);
+const data1 = JSON.parse(raw_data_set1);
+const data2 = JSON.parse(raw_data_set2)
 
 function getDeck(deck) {
   let richDeck = [];
   for (const c of deck) {
-    let card = data.find(element => element.cardCode === c.code);
+    var card;
+    var set;
+    if(c.code.startsWith("01")){
+      card = data1.find(element => element.cardCode === c.code);
+      set = 1;
+    } else {
+      card = data2.find(element => element.cardCode === c.code.replace("undefined", "BW"));
+      set = 2;
+    }
+    
     let megatype = "";
+    
     if (card.supertype === "Champion") {
       megatype = "Champion";
     } else if (card.type === "Unit") {
@@ -17,8 +31,11 @@ function getDeck(deck) {
     } else {
       megatype = "Spell";
     }
+    
+    console.log(deck);
     richDeck.push({
-      code: c.code,
+      set: set,
+      code: c.code.replace("undefined", "BW"),
       name: card.name,
       count: c.count,
       cost: card.cost,

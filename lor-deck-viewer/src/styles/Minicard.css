@@ -62,6 +62,10 @@
   background: linear-gradient(to right, #ffd599 80%, transparent);
 }
 
+.bilgewater {
+  background: linear-gradient(to right, #e07d62 80%, transparent)
+}
+
 .common {
   background-color: #04bf66;
 }

@@ -77,7 +77,7 @@ class Decklist extends Component {
             <img
               alt={`${cardInfo.name}`}
               key={`img${cardInfo.code}`}
-              src={`https://dd.b.pvp.net/latest/set1/en_us/img/cards/${cardInfo.code}.png`}
+              src={`https://dd.b.pvp.net/latest/set${cardInfo.set}/en_us/img/cards/${cardInfo.code}.png`}
               className={
                 cardInfo.code === this.state.hovered ? "visible" : "hidden"
               }
