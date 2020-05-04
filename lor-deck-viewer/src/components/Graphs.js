@@ -16,12 +16,14 @@ export default class Graphs extends Component {
         ["4", 0, 0, ""],
         ["5", 0, 0, ""],
         ["6", 0, 0, ""],
-        ["7+", 0, 0, ""]
-      ]
+        ["7+", 0, 0, ""],
+      ],
+      typeCount: [],
     };
 
     this.fetchDeck = this.fetchDeck.bind(this);
     this.normalize = this.normalize.bind(this);
+    this.typeToIndex = this.typeToIndex.bind(this);
     this.fetchDeck();
   }
 
@@ -29,15 +31,34 @@ export default class Graphs extends Component {
     return str.toLowerCase().replace(/\s/g, "");
   }
 
+  typeToIndex(str) {
+    let type = 0;
+    switch (str) {
+      case "Follower":
+        type = 0;
+        break;
+      case "Champion":
+        type = 1;
+        break;
+      case "Spell":
+        type = 2;
+        break;
+      default:
+        type = 0;
+    }
+    return type;
+  }
+
   fetchDeck() {
     const code = this.props.code;
     fetch(`https://decks.wizra.cc/json/${code}`)
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         let faction1 = "";
         let faction2 = "";
         let cards1 = [0, 0, 0, 0, 0, 0, 0, 0];
         let cards2 = [0, 0, 0, 0, 0, 0, 0, 0];
+        let types = [0, 0, 0];
 
         for (const card of data.deck) {
           if (faction1 === "") {
@@ -51,6 +72,8 @@ export default class Graphs extends Component {
           } else {
             cards2[card.cost <= 7 ? card.cost : 7] += card.count;
           }
+
+          types[this.typeToIndex(card.megatype)] += card.count;
         }
 
         let graphData = [
@@ -62,7 +85,14 @@ export default class Graphs extends Component {
           ["4", cards1[4], cards2[4], cards1[4] + cards2[4]],
           ["5", cards1[5], cards2[5], cards1[5] + cards2[5]],
           ["6", cards1[6], cards2[6], cards1[6] + cards2[6]],
-          ["7+", cards1[7], cards2[7], cards1[7] + cards2[7]]
+          ["7+", cards1[7], cards2[7], cards1[7] + cards2[7]],
+        ];
+
+        let typeCountData = [
+          ["Type", "Count"],
+          ["Followers", types[0]],
+          ["Champions", types[1]],
+          ["Spells", types[2]],
         ];
 
         const colors = {
@@ -73,12 +103,12 @@ export default class Graphs extends Component {
           noxus: "#ff817b",
           "piltover&zaun": "#ffd599",
           bilgewater: "#e07d62",
-          "": "transparent"
+          "": "transparent",
         };
 
         let seriesData = {
           0: { color: colors[this.normalize(faction1)] },
-          1: { color: colors[this.normalize(faction2)] }
+          1: { color: colors[this.normalize(faction2)] },
         };
 
         console.log(seriesData);
@@ -86,7 +116,8 @@ export default class Graphs extends Component {
         this.setState({
           deck: data.deck.sort((a, b) => (a.cost > b.cost ? 1 : -1)),
           data: graphData,
-          seriesData: seriesData
+          typeCount: typeCountData,
+          seriesData: seriesData,
         });
       });
   }
@@ -101,32 +132,57 @@ export default class Graphs extends Component {
           data={this.state.data}
           options={{
             title: "Card Costs",
-            titleTextStyle: {color: "white"},
+            titleTextStyle: { color: "white" },
             isStacked: true,
             legend: "none",
             backgroundColor: "transparent",
             vAxis: {
               gridlines: {
-                color: "transparent"
+                color: "transparent",
               },
               textStyle: {
-                color: "transparent"
+                color: "transparent",
               },
-              baselineColor: "white"
+              baselineColor: "white",
             },
             hAxis: {
               baselineColor: "white",
               textStyle: {
-                color: "white"
-              }
+                color: "white",
+              },
             },
             annotations: {
               alwaysOutside: "true",
               textStyle: { color: "#ffffff", auraColor: "#000000" },
-              stem: { color: "transparent" }
+              stem: { color: "transparent" },
             },
             enableInteractivity: "false",
-            series: this.state.seriesData
+            series: this.state.seriesData,
+          }}
+        />
+        <Chart
+          width="100%"
+          height="400px"
+          chartType="PieChart"
+          loader="Loading Charts..."
+          data={this.state.typeCount}
+          options={{
+            title: "Card Types",
+            titleTextStyle: { color: "white" },
+            backgroundColor: "transparent",
+            legend: {
+              position: "top",
+              maxLines: 3,
+              textStyle: { color: "white", auraColor: "black" },
+            },
+            pieSliceText: "value",
+            pieSliceTextStyle: {
+              color: "white",
+              auraColor: "black",
+              fontSize: 14,
+            },
+            pieHole: 0.5,
+            colors: ["#66A", "#BB3", "#A33"],
           }}
         />
       </div>
