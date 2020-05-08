@@ -18,7 +18,7 @@ function getDeck(deck) {
       card = data1.find(element => element.cardCode === c.code);
       set = 1;
     } else {
-      card = data2.find(element => element.cardCode === c.code.replace("undefined", "BW"));
+      card = data2.find(element => element.cardCode === c.code);
       set = 2;
     }
     
@@ -35,7 +35,7 @@ function getDeck(deck) {
     console.log(deck);
     richDeck.push({
       set: set,
-      code: c.code.replace("undefined", "BW"),
+      code: c.code,
       name: card.name,
       count: c.count,
       cost: card.cost,
