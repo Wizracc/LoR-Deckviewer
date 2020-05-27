@@ -7,7 +7,7 @@ let raw_data_set2 = fs.readFileSync(
   "./set2-lite-en_us/en_us/data/set2-en_us.json"
 );
 const data1 = JSON.parse(raw_data_set1);
-const data2 = JSON.parse(raw_data_set2)
+const data2 = JSON.parse(raw_data_set2);
 
 function getDeck(deck) {
   let richDeck = [];
